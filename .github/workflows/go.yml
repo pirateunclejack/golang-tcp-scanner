@@ -32,7 +32,7 @@ jobs:
         run: go fmt
 
       - name: Build
-        run: cd ./tcp-scanner && go build -v -o tcp-scanner .
+        run: cd ./golang-tcp-scanner && go build -v -o tcp-scanner .
 
       - name: Run
         run: ./tcp-scanner
