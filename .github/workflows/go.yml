@@ -28,6 +28,9 @@ jobs:
       - name: checkout
         uses: actions/checkout@v3
 
+      - name: ls
+        run: ls -l .
+
       - name: fmt
         run: go fmt
 
