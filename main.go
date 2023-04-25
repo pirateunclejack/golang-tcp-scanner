@@ -41,7 +41,7 @@ import (
 // 	fmt.Printf("/n/n%d seconds", elapsed)
 // }
 
-func worker(ports chan int, results chan int){
+func worker(ports chan int, results chan int) {
 	for p := range ports {
 		address := fmt.Sprintf("127.0.0.1:%d", p)
 		conn, err := net.Dial("tcp", address)
@@ -62,20 +62,18 @@ func main() {
 	var openports []int
 	var closeports []int
 
-
 	for i := 0; i < cap(ports); i++ {
 		go worker(ports, results)
 	}
 
-	go func(){
+	go func() {
 		for i := 0; i < 1024; i++ {
 			ports <- i
 		}
 	}()
-	
 
 	for i := 0; i < 1024; i++ {
-		port := <- results
+		port := <-results
 		if port != 0 {
 			openports = append(openports, port)
 		} else {
@@ -96,4 +94,3 @@ func main() {
 	}
 
 }
-
